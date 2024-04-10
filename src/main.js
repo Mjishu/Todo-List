@@ -1,4 +1,5 @@
 import { Todo } from "./createTodo";
+import {format ,compareAsc} from "date-fns";
 
 function createMainDom(){
     const content = document.getElementById("content");
@@ -6,6 +7,16 @@ function createMainDom(){
     openCreate.setAttribute("id", "createButton")
     openCreate.textContent = "Add New";
     content.append(openCreate);
+
+    const priorityHolder = document.getElementById("priorityHolder");
+    const buttonValues = ["Low", "Med", "High"]
+    for(let i=0; i<3; i++){
+        const priorityButton = document.createElement("button");
+        priorityButton.textContent = buttonValues[i];
+        priorityButton.setAttribute("id", 'button' + buttonValues[i])
+        priorityHolder.appendChild(priorityButton);
+    }
+
 }
 
 function addNewListener(){
@@ -21,7 +32,7 @@ function addNewListener(){
 
 const Title = document.getElementById("formTitle");
 const Desc = document.getElementById("formDesc");
-const Date = document.getElementById("Date"); 
+const dateInput = document.getElementById("Date"); 
 const Priority = document.getElementById("Priority");
 const Status = document.getElementById("Status");
 
@@ -32,7 +43,10 @@ function closeDialog(todoList){
 
     formSubmit.addEventListener("click", () => {
         dialog.close()
-        const newTodo = new Todo(Title.value,Desc.value, Date.value, Priority.value, Status.checked);
+        console.log(dateInput.value)
+        const newDate = format(new Date(dateInput.value), "dd/MM/yyyy");
+        console.log(newDate)
+        const newTodo = new Todo(Title.value,Desc.value,newDate, Priority.value, Status.checked);
         todoList.push(newTodo);
         console.table(todoList);
     })
@@ -43,8 +57,6 @@ function individualDom(title,desc,date,priority,status){
 
     const todoHolder = document.createElement("div");
     //todoHolder.setAttribute("id", "todoHolder");
-  
-
     const todoTitle = document.createElement("p"); 
     //todoTitle.className = "todoTitle";
     todoHolder.innerHTML = title
@@ -73,3 +85,5 @@ function individualDom(title,desc,date,priority,status){
 //* For i in range (todoList) -> individualDom(t,d,d,p,s) find a place to do this?
 
 export{createMainDom, addNewListener, closeDialog}
+
+
