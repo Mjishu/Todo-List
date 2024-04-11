@@ -1,4 +1,4 @@
-import { createMainDom, addNewListener, closeDialog } from "./main";
+import { createMainDom, addNewListener, closeDialog} from "./main";
 import { Todo } from "./createTodo";
 
 
@@ -6,6 +6,7 @@ const todoList = [];
 
 createMainDom();
 addNewListener();
+
 
 
 function createBaseTodo(){
@@ -20,5 +21,4 @@ closeDialog(todoList);
 for(let i=0;i<todoList.length;i++){
     console.table(todoList[i])
 } 
-
 

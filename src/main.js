@@ -9,13 +9,17 @@ function createMainDom(){
     content.append(openCreate);
 
     const priorityHolder = document.getElementById("priorityHolder");
-    const buttonValues = ["Low", "Med", "High"]
+    const buttonValues = ["Low", "Medium", "High"]
     for(let i=0; i<3; i++){
-        const priorityButton = document.createElement("button");
+        const priorityButton = document.createElement("input");
+        priorityButton.setAttribute("type", "radio");
+        priorityButton.setAttribute("value", buttonValues[i].toLowerCase());
         priorityButton.textContent = buttonValues[i];
+        priorityButton.setAttribute("name", "priorityButtons");
         priorityButton.setAttribute("id", 'button' + buttonValues[i])
         priorityHolder.appendChild(priorityButton);
     }
+    
 
 }
 
@@ -25,7 +29,6 @@ function addNewListener(){
 
     openCreate.addEventListener("click", () => {
         dialog.showModal();
-        console.log("clicked")
     })
     
 }
@@ -33,20 +36,28 @@ function addNewListener(){
 const Title = document.getElementById("formTitle");
 const Desc = document.getElementById("formDesc");
 const dateInput = document.getElementById("Date"); 
-const Priority = document.getElementById("Priority");
 const Status = document.getElementById("Status");
+
+function radioButtonChecker(){
+    var  ele = document.getElementsByName("priorityButtons");
+      for (let i=0; i < ele.length; i++){
+          if (ele[i].checked){
+              return ele[i].value;
+          }
+      }
+}
 
 function closeDialog(todoList){
     const dialog = document.querySelector("dialog");
     const formSubmit = document.getElementById("formSubmit");
 
-
+    //todo Put the radio button value checker here or in addeventlistener
     formSubmit.addEventListener("click", () => {
         dialog.close()
-        console.log(dateInput.value)
+
         const newDate = format(new Date(dateInput.value), "dd/MM/yyyy");
-        console.log(newDate)
-        const newTodo = new Todo(Title.value,Desc.value,newDate, Priority.value, Status.checked);
+        console.log(newDate);
+        const newTodo = new Todo(Title.value,Desc.value,newDate, radioButtonChecker(), Status.checked); //! Priority needs to be fixed before I can add it here; aka find a way to get the button thats clicked
         todoList.push(newTodo);
         console.table(todoList);
     })
@@ -82,8 +93,12 @@ function individualDom(title,desc,date,priority,status){
 }
 
 
-//* For i in range (todoList) -> individualDom(t,d,d,p,s) find a place to do this?
 
 export{createMainDom, addNewListener, closeDialog}
 
+
+
+
+//todo: Get the different values for the priority buttons and somehow get them to save to this.priority? 
+//todo: Get the date to say the date like: 11th April '23
 
