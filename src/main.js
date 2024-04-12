@@ -1,27 +1,8 @@
 import { Todo } from "./createTodo";
 import {format ,compareAsc} from "date-fns";
+import { individualDom } from "./createDom";
 
-function createMainDom(){
-    const content = document.getElementById("content");
-    const openCreate = document.createElement("button");
-    openCreate.setAttribute("id", "createButton")
-    openCreate.textContent = "Add New";
-    content.append(openCreate);
 
-    const priorityHolder = document.getElementById("priorityHolder");
-    const buttonValues = ["Low", "Medium", "High"]
-    for(let i=0; i<3; i++){
-        const priorityButton = document.createElement("input");
-        priorityButton.setAttribute("type", "radio");
-        priorityButton.setAttribute("value", buttonValues[i].toLowerCase());
-        priorityButton.textContent = buttonValues[i];
-        priorityButton.setAttribute("name", "priorityButtons");
-        priorityButton.setAttribute("id", 'button' + buttonValues[i])
-        priorityHolder.appendChild(priorityButton);
-    }
-    
-
-}
 
 function addNewListener(){
     const openCreate = document.getElementById("createButton");
@@ -33,6 +14,7 @@ function addNewListener(){
     
 }
 
+const content = document.getElementById("content");
 const Title = document.getElementById("formTitle");
 const Desc = document.getElementById("formDesc");
 const dateInput = document.getElementById("Date"); 
@@ -55,47 +37,48 @@ function closeDialog(todoList){
     formSubmit.addEventListener("click", () => {
         dialog.close()
 
-        const newDate = format(new Date(dateInput.value), "dd/MM/yyyy");
+        const newDate = format(new Date(dateInput.value), "do MMM y");
         console.log(newDate);
-        const newTodo = new Todo(Title.value,Desc.value,newDate, radioButtonChecker(), Status.checked); //! Priority needs to be fixed before I can add it here; aka find a way to get the button thats clicked
+        const newTodo = new Todo(Title.value,Desc.value,newDate, radioButtonChecker(), Status.checked); //! Priority needs to be fixed before I can add it here; aka find a way to get the button thats clicked // Wtf am I yapping about?
+        individualDom(Title.value,Desc.value,newDate, radioButtonChecker(), Status.checked);
         todoList.push(newTodo);
         console.table(todoList);
     })
 }
 
-function individualDom(title,desc,date,priority,status){
-    const content = document.getElementById("content");
 
-    const todoHolder = document.createElement("div");
-    //todoHolder.setAttribute("id", "todoHolder");
-    const todoTitle = document.createElement("p"); 
-    //todoTitle.className = "todoTitle";
-    todoHolder.innerHTML = title
-
-    const todoDesc = document.createElement("p");
-   // todoDesc.className = "todoDesc";
-    todoDesc.innerHTML = desc
-
-    const todoDate = document.createElement("p");
-   // todoDate.className = 'todoDate';
-    todoDate.innerHTML = date
-
-    const todoPriority = document.createElement("p");
-    //todoPriority.className = 'todoPriority';
-    todoPriority.innerHTML = priority
-
-    const todoStatus = document.createElement("p");
-   //todoStatus.className = "todoStatus";
-   todoStatus.innerHTML = status
-
-   todoHolder.append(todoTitle,todoDesc,todoDate,todoPriority,todoStatus);
-   content.append(todoHolder);
+function todayButtonInner(){
+    document.getElementById("buttonToday").addEventListener("click", () => {
+        document.getElementById("homeDiv").hidden = true
+        document.getElementById("weekDiv").hidden = true
+        document.getElementById("todayDiv").innerHTML = "" // change this to the thing that will populate todayDiv
+        document.getElementById("todayDiv").hidden = false
+        console.log("today Button")
+    })
 }
 
+function homeButtonInner(){
+    document.getElementById("buttonHome").addEventListener('click', () => {
+        document.getElementById("homeDiv").hidden = false
+        document.getElementById("weekDiv").hidden = true
+        document.getElementById("todayDiv").hidden = true
 
+        //logic for inner div content here
+        console.log("home Button")
+    })
+}
 
-export{createMainDom, addNewListener, closeDialog}
+function weekButtonInner(){
+    document.getElementById("buttonWeek").addEventListener("click", () => {
+        document.getElementById("homeDiv").hidden = true
+        document.getElementById("weekDiv").hidden = false
+        document.getElementById("todayDiv").hidden = true
 
+        //logic for inner div content here
+        console.log("week Button")
+    })
+}
+export{ addNewListener, closeDialog,todayButtonInner, homeButtonInner,weekButtonInner}
 
 
 
