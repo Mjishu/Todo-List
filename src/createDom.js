@@ -1,3 +1,5 @@
+import { isEqual,startOfDay } from "date-fns";
+
 const content = document.getElementById("content");
 
 function createMainDom(){
@@ -40,8 +42,9 @@ function mainDivCreate(){
 }
 
 function individualDom(title,desc,date,priority,status){
-    const home = document.getElementById("homeDiv")
+    const home = document.getElementById("homeDiv");
     const todoHolder = document.createElement("div");
+    
     todoHolder.style.border = "1px solid black";
     todoHolder.style.minWidth = "150px"
     todoHolder.style.maxWidth = "200px"
@@ -51,8 +54,8 @@ function individualDom(title,desc,date,priority,status){
     const todoTitle = document.createElement("p"); 
     todoHolder.innerHTML = title
 
-    const todoDesc = document.createElement("p");
-    todoDesc.innerHTML = desc
+    //const todoDesc = document.createElement("p");
+    //todoDesc.innerHTML = desc
 
     const todoDate = document.createElement("p");
     todoDate.innerHTML = date
@@ -61,10 +64,14 @@ function individualDom(title,desc,date,priority,status){
     todoPriority.innerHTML = priority
 
     const todoStatus = document.createElement("p");
-   todoStatus.innerHTML = status
+    todoStatus.innerHTML = status
 
-   todoHolder.append(todoTitle,todoDesc,todoDate,todoPriority,todoStatus);
-   if (home){ //! Issue here with not being able to append the items to home>:
+    const detailButton = document.createElement("button");
+    detailButton.innerHTML = "Details";
+    detailButton.className = "detailButton";
+
+   todoHolder.append(todoTitle,todoDate,todoPriority,todoStatus,detailButton);
+   if (home){
     home.append(todoHolder)
     console.log("home connected")
    }
@@ -81,4 +88,22 @@ function projectButtons (){
     }
 }
 
-export{createMainDom, individualDom, mainDivCreate, projectButtons}
+function openDetails(title,desc,date,priority,status){
+    const dialogOpen = document.createElement("dialog");
+    dialogOpen.setAttribute('id', "openDetails");
+    dialogOpen.show();
+
+    const todoTitle = document.createElement("p"); 
+        todoHolder.innerHTML = title
+    const todoDesc = document.createElement("p");
+        todoDesc.innerHTML = desc
+    const todoDate = document.createElement("p");
+        todoDate.innerHTML = date
+    const todoPriority = document.createElement("p");
+        todoPriority.innerHTML = priority
+    const todoStatus = document.createElement("p");
+        todoStatus.innerHTML = status
+
+}
+
+export{createMainDom, individualDom, mainDivCreate, projectButtons, openDetails}
