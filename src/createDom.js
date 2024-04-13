@@ -1,6 +1,11 @@
 import { isEqual,startOfDay } from "date-fns";
 
 const content = document.getElementById("content");
+const titleElement = document.getElementById("TitleElement");    
+const descElement = document.getElementById("DescElement");
+const dateElement = document.getElementById("DateElement");
+const  priorityElement = document.getElementById("PriorityElement");
+const statusElement = document.getElementById("StatusElement");
 
 function createMainDom(){
     const openCreate = document.createElement("button");
@@ -52,7 +57,7 @@ function individualDom(title,desc,date,priority,status){
     todoHolder.style.textAlign = 'center'; //* might get rid of these styles, just using it to setup
     
     const todoTitle = document.createElement("p"); 
-    todoHolder.innerHTML = title
+    todoTitle.innerHTML = title
 
     //const todoDesc = document.createElement("p");
     //todoDesc.innerHTML = desc
@@ -89,21 +94,42 @@ function projectButtons (){
 }
 
 function openDetails(title,desc,date,priority,status){
-    const dialogOpen = document.createElement("dialog");
-    dialogOpen.setAttribute('id', "openDetails");
+    clearOpenDetails();
+    const dialogOpen = document.getElementById("openDetails");
+    populateOpenDetails(title,desc,date,priority,status)
     dialogOpen.show();
 
-    const todoTitle = document.createElement("p"); 
-        todoHolder.innerHTML = title
-    const todoDesc = document.createElement("p");
-        todoDesc.innerHTML = desc
-    const todoDate = document.createElement("p");
-        todoDate.innerHTML = date
-    const todoPriority = document.createElement("p");
-        todoPriority.innerHTML = priority
-    const todoStatus = document.createElement("p");
-        todoStatus.innerHTML = status
+    //todo Populate the different P.values with their info^
+    console.log("open Details")
+}
+
+
+function clearOpenDetails(){
+    titleElement.innerHTML = "";
+    descElement.innerHTML = "";
+    dateElement.innerHTML = "";
+    priorityElement.innerHTML = "";
+    statusElement.innerHTML = "";
 
 }
 
-export{createMainDom, individualDom, mainDivCreate, projectButtons, openDetails}
+function populateOpenDetails(t,dd,d,p,s){
+    titleElement.innerHTML = "Title: " + t ;
+    descElement.innerHTML = "Description: " + dd;
+    dateElement.innerHTML = "Date: " + d;
+    priorityElement.innerHTML = "Priority: " + p;
+    statusElement.innerHTML = "Status: " + s;
+}
+
+function cssStyles(){
+    const body = document.querySelector("body");
+    const content = document.getElementById("content")
+    const buttonStyle= document.querySelectorAll("button");
+    buttonStyle.forEach(item =>{
+        item.style.backgroundColor = "#707B7C"
+    })
+    body.style.backgroundColor = "#283747"
+    content.style.color = "#FFC300"
+}
+
+export{createMainDom, individualDom, mainDivCreate, projectButtons, openDetails, cssStyles}

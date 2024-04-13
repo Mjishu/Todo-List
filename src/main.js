@@ -30,7 +30,7 @@ function radioButtonChecker(){
 }
 
 function closeDialog(todoList){
-    const dialog = document.querySelector("dialog");
+    const dialog = document.querySelector("dialog"); //* Doesnt work now that I added a second dialog option
     const formSubmit = document.getElementById("formSubmit");
 
     //todo Put the radio button value checker here or in addeventlistener
