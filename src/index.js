@@ -1,10 +1,10 @@
-import {addNewListener, closeDialog, } from "./main";
+import {addNewListener, closeDialog, todoListMain } from "./main";
 import { createMainDom, individualDom, mainDivCreate , projectButtons, openDetails, } from "./createDom";
 import { Todo } from "./createTodo";
 import { todayButtonInner, homeButtonInner, weekButtonInner, weekPopulate,homePopulate,todayPopulate} from "./populateProjects";
-import { cssStyles } from "./cssStyle";
+import { cssStyles, priorityColor } from "./cssStyle";
 
-const todoList = [];
+const todoList= [];
 
 createMainDom();
 addNewListener();
@@ -59,9 +59,3 @@ cssStyles();
 //todo: color code for priority(low=green, mid=yellow,high=red)
     // if priority.buttonTicked = low {priority.style.color=green}; else if(priority.buttonTicked = med){priority.style.color = yellow} etc.
 //todo Add memory functionality
-
-
-let rawr = "rawr";
-
-const home = document.getElementById("homeDiv")
-const today = document.getElementById("todayDiv");

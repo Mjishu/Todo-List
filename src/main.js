@@ -10,7 +10,6 @@ function addNewListener(){
         dialogOne.showModal();
         
     })
-    
 }
 
 const content = document.getElementById("content");
@@ -32,12 +31,11 @@ function closeDialog(todoList){
     const dialog = document.getElementById("CreateElements"); 
     const formSubmit = document.getElementById("formSubmit");
     const formClose = document.getElementById("exitForm");
-    //todo Put the radio button value checker here or in addeventlistener
+
     formSubmit.addEventListener("click", () => {
         dialog.close()
 
         const newDate = format(new Date(dateInput.value), "do MMM y");
-        console.log(newDate);
         const newTodo = new Todo(Title.value,Desc.value,newDate, radioButtonChecker(), Status.checked); 
         individualDom(Title.value,Desc.value,newDate, radioButtonChecker(), Status.checked);
         todoList.push(newTodo);

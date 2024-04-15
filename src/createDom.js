@@ -1,4 +1,5 @@
 import { isEqual,startOfDay,format, isThisWeek, parse} from "date-fns";
+import { priorityColor } from "./cssStyle";
 
 const content = document.getElementById("content");
 const titleElement = document.getElementById("TitleElement");    
@@ -63,13 +64,11 @@ function individualDom(title,desc,date,priority,status){
     const todoTitle = document.createElement("p"); 
     todoTitle.innerHTML = title
 
-    //const todoDesc = document.createElement("p");
-    //  todoDesc.innerHTML = desc
-
     const todoDate = document.createElement("p");
     todoDate.innerHTML = date
 
     const todoPriority = document.createElement("p");
+    todoPriority.className = "todoPriority"
     todoPriority.innerHTML = priority
 
     const todoStatus = document.createElement("p");
@@ -80,7 +79,6 @@ function individualDom(title,desc,date,priority,status){
     detailButton.className = "detailButton";
 
    todoHolder.append(todoTitle,todoDate,todoPriority,todoStatus,detailButton);
-   console.log(date) //! Issue with date format so cant append it to week! Should work after fixing it
    const parsedDate = parse(date, "do MMM yyyy", new Date());
    const newDateFormat = format(parsedDate, "yyyy M d")
 
@@ -98,6 +96,7 @@ function individualDom(title,desc,date,priority,status){
         home.appendChild(todoHolder)
     }
    //console.log(isThisWeek(new Date(newDateFormat)))
+   priorityColor();
 }
 
 function projectButtons (){
