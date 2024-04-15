@@ -8,7 +8,7 @@ const  priorityElement = document.getElementById("PriorityElement");
 const statusElement = document.getElementById("StatusElement");
 
 function createMainDom(){
-    const openCreate = document.createElement("button"); //!// this isn;t where the add new button issue is but trace it from here
+    const openCreate = document.createElement("button"); 
     openCreate.setAttribute("id", "createButton")
     openCreate.textContent = "Add New";
     content.append(openCreate);
