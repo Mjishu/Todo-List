@@ -1,4 +1,4 @@
-import { isEqual,startOfDay,format} from "date-fns";
+import { isEqual,startOfDay,format, isThisWeek, parse} from "date-fns";
 
 const content = document.getElementById("content");
 const titleElement = document.getElementById("TitleElement");    
@@ -80,17 +80,24 @@ function individualDom(title,desc,date,priority,status){
     detailButton.className = "detailButton";
 
    todoHolder.append(todoTitle,todoDate,todoPriority,todoStatus,detailButton);
+   console.log(date) //! Issue with date format so cant append it to week! Should work after fixing it
+   const parsedDate = parse(date, "do MMM yyyy", new Date());
+   const newDateFormat = format(parsedDate, "yyyy M d")
 
     if(date === currentDate){ //* its an issue with the if statement or something, I can only apend it to one of the variables
         console.log(title + " appending to today")
         today.appendChild(todoHolder)
         home.appendChild(todoHolder.cloneNode(true))
     }
+    else if(isThisWeek(new Date(newDateFormat))){
+        week.appendChild(todoHolder);
+        home.appendChild(todoHolder.cloneNode(true))
+    }
     else{
         console.log("appending home");
         home.appendChild(todoHolder)
     }
-   
+   //console.log(isThisWeek(new Date(newDateFormat)))
 }
 
 function projectButtons (){
