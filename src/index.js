@@ -12,17 +12,18 @@ addNewListener();
 
 mainDivCreate();
 function createBaseTodo(){
-    const firstTodo = new Todo("Meow", "Find a cat and make it meow", "2024/04/13", "high", false);
-    const secondTodo = new Todo("Bark", "Find a dog to bark", "2024/04/12", "low", false);
+    const firstTodo = new Todo("Meow", "Find a cat and make it meow", "15th Apr 2024", "high", false);
+    const secondTodo = new Todo("Bark", "Find a dog to bark", "16th Apr 2024", "low", false);
 
     individualDom(firstTodo.title,firstTodo.desc,firstTodo.date,firstTodo.priority,firstTodo.status);
     individualDom(secondTodo.title,secondTodo.desc,secondTodo.date,secondTodo.priority,secondTodo.status);
     todoList.push(firstTodo,secondTodo);
-
 }
+
 todayPopulate();
 homePopulate();
 weekPopulate();
+
 projectButtons();
 
 todayButtonInner();
@@ -58,3 +59,9 @@ cssStyles();
 //todo: color code for priority(low=green, mid=yellow,high=red)
     // if priority.buttonTicked = low {priority.style.color=green}; else if(priority.buttonTicked = med){priority.style.color = yellow} etc.
 //todo Add memory functionality
+
+
+let rawr = "rawr";
+
+const home = document.getElementById("homeDiv")
+const today = document.getElementById("todayDiv");

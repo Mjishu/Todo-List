@@ -9,11 +9,6 @@ function todayButtonInner(){
         //document.getElementById("todayDiv").innerHTML = "" // change this to the thing that will populate todayDiv
         document.getElementById("todayDiv").hidden = false
         console.log("today Button")
-        
-        /*if(!todayPopulated){
-            todayPopulate();
-            todayPopulated = true;
-        }*/
     })
 }
 
@@ -26,10 +21,6 @@ function homeButtonInner(){
 
         //logic for inner div content here
         console.log("home Button")
-        /*if(!homePopulated){
-            homePopulate();
-            homePopulated = true;
-        }*/
     })
 }
 
@@ -41,10 +32,6 @@ function weekButtonInner(){
 
         //logic for inner div content here
         console.log("week Button");
-        /*if(!weekPopulated){
-            weekPopulate();
-            weekPopulated = true;
-        }*/
     })
 }
 

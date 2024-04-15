@@ -8,6 +8,8 @@ function cssStyles(){ //todo Change Palatte
     })
     body.style.backgroundColor = "#283747"
     content.style.color = "#FFC300"
+
+    
 }
 
 export{cssStyles}
