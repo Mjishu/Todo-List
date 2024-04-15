@@ -1,7 +1,7 @@
 import {addNewListener, closeDialog, } from "./main";
 import { createMainDom, individualDom, mainDivCreate , projectButtons, openDetails, } from "./createDom";
 import { Todo } from "./createTodo";
-import { todayButtonInner, homeButtonInner, weekButtonInner } from "./populateProjects";
+import { todayButtonInner, homeButtonInner, weekButtonInner, weekPopulate,homePopulate,todayPopulate} from "./populateProjects";
 import { cssStyles } from "./cssStyle";
 
 const todoList = [];
@@ -20,7 +20,9 @@ function createBaseTodo(){
     todoList.push(firstTodo,secondTodo);
 
 }
-
+todayPopulate();
+homePopulate();
+weekPopulate();
 projectButtons();
 
 todayButtonInner();

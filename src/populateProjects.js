@@ -10,10 +10,10 @@ function todayButtonInner(){
         document.getElementById("todayDiv").hidden = false
         console.log("today Button")
         
-        if(!todayPopulated){
+        /*if(!todayPopulated){
             todayPopulate();
             todayPopulated = true;
-        }
+        }*/
     })
 }
 
@@ -26,10 +26,10 @@ function homeButtonInner(){
 
         //logic for inner div content here
         console.log("home Button")
-        if(!homePopulated){
+        /*if(!homePopulated){
             homePopulate();
             homePopulated = true;
-        }
+        }*/
     })
 }
 
@@ -41,10 +41,10 @@ function weekButtonInner(){
 
         //logic for inner div content here
         console.log("week Button");
-        if(!weekPopulated){
+        /*if(!weekPopulated){
             weekPopulate();
             weekPopulated = true;
-        }
+        }*/
     })
 }
 
@@ -69,4 +69,8 @@ function weekPopulate(){
     titleWeek.className = "populateHeaders"
 }
 
-export{ todayButtonInner, homeButtonInner,weekButtonInner}
+export{ todayButtonInner, homeButtonInner,weekButtonInner,weekPopulate,homePopulate,todayPopulate}
+
+
+/*? The way I want to populate the different divs is not on button click but so that the divs themsevles have that information all the time, I just need to 
+figure out where to put this function so that the divs get that value */
