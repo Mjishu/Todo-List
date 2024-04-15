@@ -6,17 +6,6 @@ class Todo{
         this.priority = priority;
         this.status = status;
     }
-    
-    //! This isnt really needed...
-    displayTable(){ 
-        console.table({
-            Title:this.title,
-            Description: this.desc,
-            Date: this.date,
-            Priority: this.priority,
-            Status: this.status
-        });
-    }
 
 }
 

@@ -8,7 +8,7 @@ const  priorityElement = document.getElementById("PriorityElement");
 const statusElement = document.getElementById("StatusElement");
 
 function createMainDom(){
-    const openCreate = document.createElement("button"); //! this isn;t where the add new button issue is but trace it from here
+    const openCreate = document.createElement("button"); //!// this isn;t where the add new button issue is but trace it from here
     openCreate.setAttribute("id", "createButton")
     openCreate.textContent = "Add New";
     content.append(openCreate);
@@ -113,6 +113,17 @@ function clearOpenDetails(){
 
 }
 
+function clearCreateForm(){
+    document.getElementById("formTitle").value = "";
+    document.getElementById("formDesc").value = "";
+    document.getElementById("Date").value = "";//is a date input
+    document.getElementById("Status").checked = false; //is a checkbox
+    var radioBtns = document.getElementById("priorityHolder").querySelectorAll("input[type='radio']");
+    radioBtns.forEach(function(radioButton){
+        radioButton.checked =false;
+    });
+}
+
 function populateOpenDetails(t,dd,d,p,s){
     titleElement.innerHTML = "Title: " + t ;
     descElement.innerHTML = "Description: " + dd;
@@ -121,16 +132,6 @@ function populateOpenDetails(t,dd,d,p,s){
     statusElement.innerHTML = "Status: " + s;
 }
 
-function cssStyles(){ //todo Change Palatte
-    const body = document.querySelector("body");
-    const content = document.getElementById("content")
-    const buttonStyle= document.querySelectorAll("button");
-    buttonStyle.forEach(item =>{
-        item.style.backgroundColor = "#515A5A "
-        item.style.color = "#FFC300"
-    })
-    body.style.backgroundColor = "#283747"
-    content.style.color = "#FFC300"
-}
 
-export{createMainDom, individualDom, mainDivCreate, projectButtons, openDetails, cssStyles}
+
+export{createMainDom, individualDom, mainDivCreate, projectButtons, openDetails, clearCreateForm}

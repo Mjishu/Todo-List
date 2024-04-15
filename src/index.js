@@ -1,7 +1,8 @@
 import {addNewListener, closeDialog, } from "./main";
-import { createMainDom, individualDom, mainDivCreate , projectButtons, openDetails, cssStyles} from "./createDom";
+import { createMainDom, individualDom, mainDivCreate , projectButtons, openDetails, } from "./createDom";
 import { Todo } from "./createTodo";
 import { todayButtonInner, homeButtonInner, weekButtonInner } from "./populateProjects";
+import { cssStyles } from "./cssStyle";
 
 const todoList = [];
 
@@ -54,4 +55,4 @@ cssStyles();
 //todo: color code for priority(low=green, mid=yellow,high=red)
 //todo Add memory functionality
 
-//! Clicking Add New doesnt work! It should be due to how i grabbed the different buttons for creating the details buttons? 
+//!//Clicking Add New doesnt work! It should be due to how i grabbed the different buttons for creating the details buttons? 

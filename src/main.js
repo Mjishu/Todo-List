@@ -1,8 +1,6 @@
 import { Todo } from "./createTodo";
 import {format ,compareAsc} from "date-fns";
-import { individualDom } from "./createDom";
-
-
+import { individualDom , clearCreateForm} from "./createDom";
 
 function addNewListener(){
     const openCreate = document.getElementById("createButton");
@@ -10,7 +8,6 @@ function addNewListener(){
 
     openCreate.addEventListener("click", () => {
         dialogOne.showModal();
-        console.log("Meowing")
         
     })
     
@@ -32,9 +29,9 @@ function radioButtonChecker(){
 }
 
 function closeDialog(todoList){
-    const dialog = document.querySelector("dialog"); //! Doesnt work now that I added a second dialog option
+    const dialog = document.getElementById("CreateElements"); 
     const formSubmit = document.getElementById("formSubmit");
-
+    const formClose = document.getElementById("exitForm");
     //todo Put the radio button value checker here or in addeventlistener
     formSubmit.addEventListener("click", () => {
         dialog.close()
@@ -45,15 +42,16 @@ function closeDialog(todoList){
         individualDom(Title.value,Desc.value,newDate, radioButtonChecker(), Status.checked);
         todoList.push(newTodo);
         console.table(todoList);
+        clearCreateForm();
     })
-}
+    formClose.addEventListener("click", () => {
+        dialog.close();
+        clearCreateForm();
+    })
 
+}
 
 
 export{ addNewListener, closeDialog}
 
-
-
-//todo: Get the different values for the priority buttons and somehow get them to save to this.priority? 
-//todo: Get the date to say the date like: 11th April '23
 
