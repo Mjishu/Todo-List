@@ -6,10 +6,12 @@ import { individualDom } from "./createDom";
 
 function addNewListener(){
     const openCreate = document.getElementById("createButton");
-    const dialog = document.querySelector("dialog");
+    const dialogOne = document.getElementById("CreateElements");
 
     openCreate.addEventListener("click", () => {
-        dialog.showModal();
+        dialogOne.showModal();
+        console.log("Meowing")
+        
     })
     
 }
@@ -30,7 +32,7 @@ function radioButtonChecker(){
 }
 
 function closeDialog(todoList){
-    const dialog = document.querySelector("dialog"); //* Doesnt work now that I added a second dialog option
+    const dialog = document.querySelector("dialog"); //! Doesnt work now that I added a second dialog option
     const formSubmit = document.getElementById("formSubmit");
 
     //todo Put the radio button value checker here or in addeventlistener
@@ -39,7 +41,7 @@ function closeDialog(todoList){
 
         const newDate = format(new Date(dateInput.value), "do MMM y");
         console.log(newDate);
-        const newTodo = new Todo(Title.value,Desc.value,newDate, radioButtonChecker(), Status.checked); //! Priority needs to be fixed before I can add it here; aka find a way to get the button thats clicked // Wtf am I yapping about?
+        const newTodo = new Todo(Title.value,Desc.value,newDate, radioButtonChecker(), Status.checked); 
         individualDom(Title.value,Desc.value,newDate, radioButtonChecker(), Status.checked);
         todoList.push(newTodo);
         console.table(todoList);

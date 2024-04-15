@@ -28,25 +28,30 @@ todayButtonInner();
 homeButtonInner();
 weekButtonInner();
 
-var buttons = document.querySelectorAll(".detailButton");
-buttons.forEach(function(button,index){
-    button.addEventListener("click", function(){
-        console.log(todoList[index])
-        const itemIndex = todoList[index]
-        openDetails(itemIndex.title,itemIndex.desc,itemIndex.date,itemIndex.priority,itemIndex.status)
-        //todo call function to show details here
+var buttons = document.querySelectorAll(".detailButton"); //* Accesses todoList so idk how to put it in its own module
+function createDetail(){
+    buttons.forEach(function(button,index){
+        button.addEventListener("click", function(){
+            console.log(todoList[index])
+            const itemIndex = todoList[index]
+            openDetails(itemIndex.title,itemIndex.desc,itemIndex.date,itemIndex.priority,itemIndex.status)
+            //todo call function to show details here
+            console.table(todoList)
+        })
     })
-})
+}
+createDetail();
+
 
 document.getElementById("dialogClose").addEventListener("click", () =>{
     document.getElementById("openDetails").close();
 })
 
 cssStyles();
-//? Find a way to use openDetails, that for each button click it will open that tasks details
-
-//* I think we are at the point we Just add the Stuff to HTML instead of the console and then style it up!
 
 //todo: Add functionality to tabs so that each project can get appeneded to its own tab i.e tasks for today would be in home and today projects
-//todo: Add an option to open the details which will show the description and the rest of the facts
+//todo//: Add an option to open the details which will show the description and the rest of the facts
 //todo: color code for priority(low=green, mid=yellow,high=red)
+//todo Add memory functionality
+
+//! Clicking Add New doesnt work! It should be due to how i grabbed the different buttons for creating the details buttons? 

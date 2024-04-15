@@ -8,7 +8,7 @@ const  priorityElement = document.getElementById("PriorityElement");
 const statusElement = document.getElementById("StatusElement");
 
 function createMainDom(){
-    const openCreate = document.createElement("button");
+    const openCreate = document.createElement("button"); //! this isn;t where the add new button issue is but trace it from here
     openCreate.setAttribute("id", "createButton")
     openCreate.textContent = "Add New";
     content.append(openCreate);
@@ -121,12 +121,13 @@ function populateOpenDetails(t,dd,d,p,s){
     statusElement.innerHTML = "Status: " + s;
 }
 
-function cssStyles(){
+function cssStyles(){ //todo Change Palatte
     const body = document.querySelector("body");
     const content = document.getElementById("content")
     const buttonStyle= document.querySelectorAll("button");
     buttonStyle.forEach(item =>{
-        item.style.backgroundColor = "#707B7C"
+        item.style.backgroundColor = "#515A5A "
+        item.style.color = "#FFC300"
     })
     body.style.backgroundColor = "#283747"
     content.style.color = "#FFC300"
