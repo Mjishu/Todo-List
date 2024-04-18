@@ -41,10 +41,9 @@ function createDetail(){
             const itemIndex = todoList[index];
             openDetails(itemIndex.title,itemIndex.desc,itemIndex.date,itemIndex.priority,itemIndex.status);
             console.table(todoList);
-        })
-    })
-}
-createDetail();
+        })})}
+
+
 
 function DialogCloses(){
     document.getElementById("dialogClose").addEventListener("click", () =>{
@@ -54,8 +53,21 @@ function DialogCloses(){
 DialogCloses();
 cssStyles();
 
-//todo: Add functionality to tabs so that each project can get appeneded to its own tab i.e tasks for today would be in home and today projects
+var statusButton = document.querySelectorAll(".statusButton");
+function toggleStatus(){
+    statusButton.forEach(function(button,index){
+        button.addEventListener("click", function (){
+            const itemIndex = todoList[index];
+            itemIndex.status = !itemIndex.status
+            button.innerHTML = itemIndex.status
+        })
+    })
+}
+//! Where to put these 2 so that they work even with  newly created elements
+toggleStatus();
+createDetail();
 
-//todo: color code for priority(low=green, mid=yellow,high=red)
-    // if priority.buttonTicked = low {priority.style.color=green}; else if(priority.buttonTicked = med){priority.style.color = yellow} etc.
 //todo Add memory functionality
+//todo Turn status into a button that switches from true to false based on button click(make it no look like a button unless hovered maybe? idk)
+//! Details button doesn't work for new items, probably because of where its being called come back to this...
+//! Week project doesnt load project that is also in today? Make a new clone maybe?

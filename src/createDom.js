@@ -71,8 +71,9 @@ function individualDom(title,desc,date,priority,status){
     todoPriority.className = "todoPriority"
     todoPriority.innerHTML = priority
 
-    const todoStatus = document.createElement("p");
+    const todoStatus = document.createElement("button");
     todoStatus.innerHTML = status
+    todoStatus.className = "statusButton"
 
     const detailButton = document.createElement("button");
     detailButton.innerHTML = "Details";
@@ -85,6 +86,7 @@ function individualDom(title,desc,date,priority,status){
     if(date === currentDate){ //* its an issue with the if statement or something, I can only apend it to one of the variables
         console.log(title + " appending to today")
         today.appendChild(todoHolder)
+        week.append(todoHolder.cloneNode(true))
         home.appendChild(todoHolder.cloneNode(true))
     }
     else if(isThisWeek(new Date(newDateFormat))){

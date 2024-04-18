@@ -49,7 +49,6 @@ function closeDialog(todoList){
 
 }
 
-
 export{ addNewListener, closeDialog}
 
 
