@@ -16,15 +16,18 @@ function priorityColor(){
     const priorityEle = document.getElementsByClassName("todoPriority");
     for(let i =0; i< priorityEle.length; i++){
         const priorityItem = priorityEle[i].innerHTML;
+        priorityEle[i].style.textDecoration = "underline";
+        priorityEle[i].style.textDecorationThickness = "3px"
+        
         
         if (priorityItem === 'low'){
-            priorityEle[i].style.color = 'green';
+            priorityEle[i].style.textDecorationColor = 'green';
         }
         else if (priorityItem === "medium"){
-            priorityEle[i].style.color = "orange";
+            priorityEle[i].style.textDecorationColor = "orange";
         }
         else if (priorityItem === "high"){
-            priorityEle[i].style.color = "red"
+            priorityEle[i].style.textDecorationColor = "red"
         }
     }
 }

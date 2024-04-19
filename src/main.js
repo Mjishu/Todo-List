@@ -2,6 +2,7 @@ import { Todo } from "./createTodo";
 import {format ,compareAsc} from "date-fns";
 import { individualDom , clearCreateForm} from "./createDom";
 
+
 function addNewListener(){
     const openCreate = document.getElementById("createButton");
     const dialogOne = document.getElementById("CreateElements");
@@ -41,6 +42,7 @@ function closeDialog(todoList){
         todoList.push(newTodo);
         console.table(todoList);
         clearCreateForm();
+       
     })
     formClose.addEventListener("click", () => {
         dialog.close();

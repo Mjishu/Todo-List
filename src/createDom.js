@@ -1,6 +1,7 @@
 import { isEqual,startOfDay,format, isThisWeek, parse} from "date-fns";
 import { priorityColor } from "./cssStyle";
 
+
 const content = document.getElementById("content");
 const titleElement = document.getElementById("TitleElement");    
 const descElement = document.getElementById("DescElement");
@@ -80,6 +81,9 @@ function individualDom(title,desc,date,priority,status){
     detailButton.className = "detailButton";
 
    todoHolder.append(todoTitle,todoDate,todoPriority,todoStatus,detailButton);
+
+   
+
    const parsedDate = parse(date, "do MMM yyyy", new Date());
    const newDateFormat = format(parsedDate, "yyyy M d")
 
@@ -97,7 +101,6 @@ function individualDom(title,desc,date,priority,status){
         console.log("appending home");
         home.appendChild(todoHolder)
     }
-   //console.log(isThisWeek(new Date(newDateFormat)))
    priorityColor();
 }
 

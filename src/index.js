@@ -2,7 +2,7 @@ import {addNewListener, closeDialog, todoListMain } from "./main";
 import { createMainDom, individualDom, mainDivCreate , projectButtons, openDetails, } from "./createDom";
 import { Todo } from "./createTodo";
 import { todayButtonInner, homeButtonInner, weekButtonInner, weekPopulate,homePopulate,todayPopulate} from "./populateProjects";
-import { cssStyles, priorityColor } from "./cssStyle";
+import { cssStyles } from "./cssStyle";
 
 const todoList= [];
 
@@ -12,8 +12,8 @@ addNewListener();
 
 mainDivCreate();
 function createBaseTodo(){
-    const firstTodo = new Todo("Meow", "Find a cat and make it meow", "15th Apr 2024", "high", false);
-    const secondTodo = new Todo("Bark", "Find a dog to bark", "16th Apr 2024", "low", false);
+    const firstTodo = new Todo("Meow", "Find a cat and make it meow", "19th Apr 2024", "high", false);
+    const secondTodo = new Todo("Bark", "Find a dog to bark", "18th Apr 2024", "low", false);
 
     individualDom(firstTodo.title,firstTodo.desc,firstTodo.date,firstTodo.priority,firstTodo.status);
     individualDom(secondTodo.title,secondTodo.desc,secondTodo.date,secondTodo.priority,secondTodo.status);
@@ -33,17 +33,6 @@ weekButtonInner();
 createBaseTodo();
 closeDialog(todoList);
 
-var buttons = document.querySelectorAll(".detailButton"); //* Accesses todoList so idk how to put it in its own module
-function createDetail(){
-    buttons.forEach(function(button,index){
-        button.addEventListener("click", function(){
-            console.log(todoList[index]);
-            const itemIndex = todoList[index];
-            openDetails(itemIndex.title,itemIndex.desc,itemIndex.date,itemIndex.priority,itemIndex.status);
-            console.table(todoList);
-        })})}
-
-
 
 function DialogCloses(){
     document.getElementById("dialogClose").addEventListener("click", () =>{
@@ -53,21 +42,51 @@ function DialogCloses(){
 DialogCloses();
 cssStyles();
 
-var statusButton = document.querySelectorAll(".statusButton");
-function toggleStatus(){
-    statusButton.forEach(function(button,index){
-        button.addEventListener("click", function (){
-            const itemIndex = todoList[index];
-            itemIndex.status = !itemIndex.status
-            button.innerHTML = itemIndex.status
-        })
-    })
-}
-//! Where to put these 2 so that they work even with  newly created elements
-toggleStatus();
-createDetail();
 
-//todo Add memory functionality
-//todo Turn status into a button that switches from true to false based on button click(make it no look like a button unless hovered maybe? idk)
-//! Details button doesn't work for new items, probably because of where its being called come back to this...
-//! Week project doesnt load project that is also in today? Make a new clone maybe?
+
+
+function statusAndDetails(){
+    document.addEventListener("click", function(event) {
+        if(event.target.classList.contains("detailButton")){
+            const index = [...document.querySelectorAll('.detailButton')].indexOf(event.target);
+            const itemIndex = todoList[index];
+            openDetails(itemIndex.title,itemIndex.desc,itemIndex.date,itemIndex.priority,itemIndex.status);
+        }
+
+        if (event.target.classList.contains("statusButton")){
+            const index = [...document.querySelectorAll('.statusButton')].indexOf(event.target);
+            const itemIndex = todoList[index];
+            itemIndex.status = !itemIndex.status;
+            event.target.innerHTML = itemIndex.status;
+        }
+})}
+statusAndDetails();
+
+function storeMemory(){
+    for(let i=0; i<todoList.length;i++){
+        const todoItem = todoList[i]
+        localStorage.setItem(`Title_${i}` , todoItem.title);
+        localStorage.setItem( `Description_${i}`,todoItem.desc );
+        localStorage.setItem( `Date_${i}`, todoItem.date);
+        localStorage.setItem( `Priority_${i}`, todoItem.priority);
+        localStorage.setItem( `Status_${i}`, todoItem.status);
+    }
+}
+storeMemory() //? Where to call this so that it gets called for the newly created elements as well
+
+
+function loadMemory(){ //? ChatGPT code; read it when im more awake...
+    for(let i = 0; i < localStorage.length; i++){
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        const index = parseInt(key.split('_')[1]);
+        
+        // Check if the key is related to a todo item
+        if (!isNaN(index)) {
+            const property = key.split('_')[0];
+            todoList[index][property.toLowerCase()] = value;
+        }
+    }
+}
+//* Changing status value doesnt update the memory ;;;
+
